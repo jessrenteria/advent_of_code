@@ -1,15 +1,11 @@
 def parse_input():
-    f = open("input.txt", 'r')
-
-    return f.read()
+    with open("input.txt", 'r') as f:
+        return f.read()
 
 def num_houses():
     data = parse_input()
-
     visited = set()
-
     current = (0,0)
-
     visited.add(current)
 
     for move in data:
@@ -24,7 +20,7 @@ def num_houses():
 
         visited.add(current)
 
-    return len(visited)
+    print(len(visited))
 
-print(num_houses())
+num_houses()
 

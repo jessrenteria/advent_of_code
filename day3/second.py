@@ -1,49 +1,41 @@
 def parse_input():
-    f = open("input.txt", 'r')
+    with open("input.txt", 'r') as f:
+        return f.read()
 
-    return f.read()
+def handle_move(move, current):
+    if move == '^':
+        current = (current[0], current[1] + 1)
+    elif move == 'v':
+        current = (current[0], current[1] - 1)
+    elif move == '>':
+        current = (current[0] + 1, current[1])
+    elif move == '<':
+        current = (current[0] - 1, current[1])
+
+    return current
+
 
 def num_houses():
     data = parse_input()
-
     visited = set()
 
     current_santa = (0,0)
     current_robot = (0,0)
 
     visited.add(current_santa)
-
     santa_mover = False
 
     for move in data:
         santa_mover = not santa_mover
-        if move == '^':
-            if santa_mover:
-                current_santa = (current_santa[0], current_santa[1] + 1)
-            else:
-                current_robot = (current_robot[0], current_robot[1] + 1)
-        elif move == 'v':
-            if santa_mover:
-                current_santa = (current_santa[0], current_santa[1] - 1)
-            else:
-                current_robot = (current_robot[0], current_robot[1] - 1)
-        elif move == '>':
-            if santa_mover:
-                current_santa = (current_santa[0] + 1, current_santa[1])
-            else:
-                current_robot = (current_robot[0] + 1, current_robot[1])
-        elif move == '<':
-            if santa_mover:
-                current_santa = (current_santa[0] - 1, current_santa[1])
-            else:
-                current_robot = (current_robot[0] - 1, current_robot[1])
 
         if santa_mover:
+            current_santa = handle_move(move, current_santa)
             visited.add(current_santa)
         else:
+            current_robot = handle_move(move, current_robot)
             visited.add(current_robot)
 
-    return len(visited)
+    print(len(visited))
 
-print(num_houses())
+num_houses()
 

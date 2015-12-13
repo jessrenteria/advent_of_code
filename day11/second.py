@@ -17,7 +17,6 @@ def valid(s):
         return False
 
     dub = 0
-
     idx = 0
 
     while idx < len(s) - 1:

@@ -1,7 +1,6 @@
 def parse_input():
-    f = open("input.txt", 'r')
-
-    return f.readlines()
+    with open("input.txt", 'r') as f:
+        return f.readlines()
 
 def num_nice():
     lines = parse_input()
@@ -26,6 +25,6 @@ def num_nice():
         if has_palindrome(line) and has_2_pair(line):
             nice += 1
 
-    return nice
+    print(nice)
 
-print(num_nice())
+num_nice()

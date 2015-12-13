@@ -1,7 +1,6 @@
 def parse_input():
-    f = open("input.txt", 'r')
-
-    return map(lambda x: x.split(), f.readlines())
+    with open("input.txt", 'r') as f:
+        return map(lambda x: x.split(), f.readlines())
 
 def num_lights_on():
     lines = parse_input()
@@ -29,6 +28,6 @@ def num_lights_on():
                 for y in range(y1, y2 + 1):
                     lights[x][y] = 1 - lights[x][y]
 
-    return sum(map(sum, lights))
+    print(sum(map(sum, lights)))
 
-print(num_lights_on())
+num_lights_on()

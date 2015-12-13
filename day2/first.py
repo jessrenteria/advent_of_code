@@ -1,11 +1,6 @@
 def parse_input():
-    f = open("input1.txt", 'r')
-    lines = []
-
-    for line in f:
-        lines += [map(int, line.split('x'))]
-
-    return lines
+    with open("input1.txt", 'r') as f:
+        return map(lambda l: map(int, l.split('x')), f.readlines())
 
 def get_sq_feet():
     presents = parse_input()
@@ -18,7 +13,7 @@ def get_sq_feet():
 
         total += a1 + a2 + a3 + min(a1, a2, a3) / 2
 
-    return total
+    print(total)
 
-print(get_sq_feet())
+get_sq_feet()
 

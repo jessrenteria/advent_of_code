@@ -1,32 +1,29 @@
 def parse_input():
-    f = open("input2.txt", 'r')
+    with open("input2.txt", 'r') as f:
+        # command, routed, operands
+        commands = [[], [], []]
 
-    # command, routed, operands
-    commands = [[], [], []]
+        lines = map(lambda x: x.split(), f.readlines())
 
-    lines = map(lambda x: x.split(), f.readlines())
+        for idx in range(len(lines)):
+            if len(lines[idx]) == 5:
+                commands[0].append(lines[idx][1])
+                commands[1].append(lines[idx][-1])
+                commands[2].append((lines[idx][0], lines[idx][2]))
+            elif len(lines[idx]) == 4:
+                commands[0].append(lines[idx][0])
+                commands[1].append(lines[idx][-1])
+                commands[2].append((lines[idx][1], 0))
+            elif len(lines[idx]) == 3:
+                commands[0].append("ASSIGN")
+                commands[1].append(lines[idx][-1])
+                commands[2].append((lines[idx][0], 0))
 
-    for idx in range(len(lines)):
-        if len(lines[idx]) == 5:
-            commands[0].append(lines[idx][1])
-            commands[1].append(lines[idx][-1])
-            commands[2].append((lines[idx][0], lines[idx][2]))
-        elif len(lines[idx]) == 4:
-            commands[0].append(lines[idx][0])
-            commands[1].append(lines[idx][-1])
-            commands[2].append((lines[idx][1], 0))
-        elif len(lines[idx]) == 3:
-            commands[0].append("ASSIGN")
-            commands[1].append(lines[idx][-1])
-            commands[2].append((lines[idx][0], 0))
-
-    return commands
+        return commands
 
 def simulate():
     c = parse_input()
-
     wires = {}
-
     done = set()
 
     for idx in range(len(c[0])):

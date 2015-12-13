@@ -1,7 +1,6 @@
 def parse_input():
-    f = open("input.txt", 'r')
-
-    return map(lambda x: x.strip()[1:-1], f.readlines())
+    with open("input.txt", 'r') as f:
+        return map(lambda x: x.strip()[1:-1], f.readlines())
 
 def loss(s):
     l = 2

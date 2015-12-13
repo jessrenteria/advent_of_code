@@ -12,6 +12,6 @@ def find_lowest():
         m = md5()
         m.update(key + str(curr))
 
-    return curr
+    print(curr)
 
-print(find_lowest())
+find_lowest()

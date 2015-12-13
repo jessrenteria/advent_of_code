@@ -7,28 +7,28 @@ def parse_input():
     with open("input.txt", 'r') as f:
         lines = map(lambda x: x.split(), f.readlines())
 
-    nodes = set()
+        nodes = set()
 
-    for line in lines:
-        nodes.add(line[0])
-        nodes.add(line[2])
+        for line in lines:
+            nodes.add(line[0])
+            nodes.add(line[2])
 
-    nodes = sorted(nodes)
-    n = len(nodes)
-    graph = [-1] * (n ** 2)
-    
-    for line in lines:
-        node1 = nodes.index(line[0])
-        node2 = nodes.index(line[2])
-        graph[ind(node1, node2, n)] = int(line[-1])
-        graph[ind(node2, node1, n)] = int(line[-1])
+        nodes = sorted(nodes)
+        n = len(nodes)
+        graph = [-1] * (n ** 2)
+        
+        for line in lines:
+            node1 = nodes.index(line[0])
+            node2 = nodes.index(line[2])
+            graph[ind(node1, node2, n)] = int(line[-1])
+            graph[ind(node2, node1, n)] = int(line[-1])
 
-    return (graph, nodes)
+        return (graph, nodes)
 
 def brute():
     (graph, nodes) = parse_input()
     n = len(nodes)
-    best = 10000
+    best = None
     
     for path in permutations(range(0, n)):
         dist = 0
@@ -45,7 +45,7 @@ def brute():
             continue
 
         # > for second part
-        if dist < best:
+        if best == None or dist < best:
             best = dist
 
     print(best)

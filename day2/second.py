@@ -1,11 +1,6 @@
 def parse_input():
-    f = open("input1.txt", 'r')
-    lines = []
-
-    for line in f:
-        lines += [map(int, line.split('x'))]
-
-    return lines
+    with open("input1.txt", 'r') as f:
+        return map(lambda l: map(int, l.split('x')), f.readlines())
 
 def get_ribbon():
     presents = parse_input()
@@ -17,7 +12,7 @@ def get_ribbon():
         p.remove(min(p))
         total += min(p) * 2
 
-    return total
+    print(total)
 
-print(get_ribbon())
+get_ribbon()
 

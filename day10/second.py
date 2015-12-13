@@ -1,7 +1,6 @@
 def parse_input():
-    f = open("input.txt", 'r')
-
-    return f.read().strip()
+    with open("input.txt", 'r') as f:
+        return f.read().strip()
 
 def look_and_say():
     s = parse_input()

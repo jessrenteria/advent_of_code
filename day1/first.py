@@ -2,6 +2,7 @@ def parse_input():
     with open("input1.txt", 'r') as f:
         return f.read()
 
+# Prints the current floor after following the instructions in the input.
 def find_floor():
     string = parse_input()
     floor = 0
@@ -12,6 +13,6 @@ def find_floor():
         elif c == ')':
             floor -= 1
 
-    return floor
+    print(floor)
 
-print(find_floor())
+find_floor()

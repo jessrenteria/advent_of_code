@@ -1,11 +1,9 @@
 def parse_input():
-    f = open("input.txt", 'r')
-
-    return f.readlines()
+    with open("input.txt", 'r') as f:
+        return f.readlines()
 
 def num_nice():
     lines = parse_input()
-
     vowels = "aeiou"
 
     def is_vowel(c):
@@ -30,6 +28,6 @@ def num_nice():
         elif sum(map(is_vowel, line)) >= 3 and repeat(line):
             nice += 1
 
-    return nice
+    print(nice)
 
-print(num_nice())
+num_nice()

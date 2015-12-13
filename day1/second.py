@@ -2,6 +2,7 @@ def parse_input():
     with open("input1.txt", 'r') as f:
         return f.read()
 
+# Prints the number of the first instruction that lands us at the basement.
 def find_basement():
     string = parse_input()
     floor = 0
@@ -14,10 +15,12 @@ def find_basement():
         elif c == ')':
             pos += 1
             floor -= 1
+
             if floor == -1:
-                return pos
+                print(pos)
+                return
 
-    return -1
+    print(-1)
 
 
-print(find_basement())
+find_basement()
